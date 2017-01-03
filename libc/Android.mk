@@ -1022,12 +1022,6 @@ LOCAL_CFLAGS := $(libc_common_cflags) \
 LOCAL_CONLYFLAGS := $(libc_common_conlyflags)
 LOCAL_CPPFLAGS := $(libc_common_cppflags) -Wold-style-cast
 
-ifeq ($(BOARD_USES_QCNE),true)
-ifeq ($(BOARD_USES_LIBC_WRAPPER),true)
-LOCAL_CPPFLAGS += -DUSE_WRAPPER
-endif
-endif
-
 LOCAL_C_INCLUDES := $(libc_common_c_includes) bionic/libstdc++/include
 LOCAL_MODULE := libc_bionic
 LOCAL_CLANG := $(use_clang)
@@ -1418,7 +1412,7 @@ LOCAL_SRC_FILES := \
 ifeq ($(BOARD_USES_QCNE),true)
 ifeq ($(BOARD_USES_LIBC_WRAPPER),true)
     LOCAL_SRC_FILES += codeaurora/PropClient.cpp
-    LOCAL_CPPFLAGS += -DUSE_WRAPPER
+    LOCAL_CFLAGS += -DUSE_WRAPPER
 endif
 endif
 
